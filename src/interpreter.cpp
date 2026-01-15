@@ -13,6 +13,6 @@ int main(int argc, char** argv) {
 
     string line;
     while (getline(source, line)) {
-        cout << line << endl;
+        if (!(line.at(0) == '?')) cout << line << endl;
     }
 }
