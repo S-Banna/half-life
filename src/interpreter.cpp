@@ -1,7 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "lexer.cpp"
+#include <vector>
+#include "lexer.h"
 
 using namespace std;
 
@@ -12,9 +13,6 @@ int main(int argc, char** argv) {
         return 1; 
     }
 
-    string line;
-    while (getline(source, line)) {
-        if (line.length() == 0 || line.at(0) == '?') continue;
-        cout << line << endl;
-    }
+    string contents((istreambuf_iterator<char>(source)), istreambuf_iterator<char>());
+    cout << contents << endl;
 }
