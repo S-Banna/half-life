@@ -1,4 +1,4 @@
-? a line of text
-? another line of text
-? some more text
-lines starting with a ? are considered comments
+? lines starting with a ? are considered comments
+
+assume x = 2 + 3
+print(x)

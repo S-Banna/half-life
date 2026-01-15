@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "lexer.cpp"
 
 using namespace std;
 
@@ -13,6 +14,7 @@ int main(int argc, char** argv) {
 
     string line;
     while (getline(source, line)) {
-        if (!(line.at(0) == '?')) cout << line << endl;
+        if (line.length() == 0 || line.at(0) == '?') continue;
+        cout << line << endl;
     }
 }
