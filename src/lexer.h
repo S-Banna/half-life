@@ -23,15 +23,15 @@ class Lexer {
     std::string source;
     size_t pos;
 
-    public:
-        Lexer(const std::string &src);
-        std::vector<Token> tokenize();
+public:
+    Lexer(const std::string& src);
+    std::vector<Token> tokenize();
 
-    private:
-        char peek();
-        char advance();
-        bool end();
+private:
+    char peek();
+    char advance();
+    bool end();
 
-        Token lexNumber();
-        Token lexIdentifierOrKeyword();
+    Token lexNumber();
+    Token lexIdentifierOrKeyword();
 };
