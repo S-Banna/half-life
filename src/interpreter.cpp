@@ -2,8 +2,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "lexer.h"
 #include ".\external\magic_enum.hpp"
+#include "lexer.h"
 
 using namespace std;
 
@@ -18,7 +18,7 @@ int main(int argc, char** argv) {
     Lexer* lex = new Lexer(contents);
     vector<Token> tokens = lex->tokenize();
 
-    for (const Token &t : tokens) {
+    for (const Token& t : tokens) {
         cout << magic_enum::enum_name(t.type) << "->";
     }
     cout << "\b\b; \n"; // remove the last

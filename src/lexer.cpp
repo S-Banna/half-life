@@ -24,7 +24,7 @@ Token Lexer::lexNumber() {
         n += advance();
     }
 
-    Token ret = {TokenType::NUMBER, n};
+    Token ret = { TokenType::NUMBER, n };
     return ret;
 }
 
@@ -36,11 +36,11 @@ Token Lexer::lexIdentifierOrKeyword() {
 
     Token ret;
     if (n == "assume") {
-        ret = {TokenType::KEYWORD_ASSUME, n};
+        ret = { TokenType::KEYWORD_ASSUME, n };
     } else if (n == "print") {
-        ret = {TokenType::KEYWORD_PRINT, n};
+        ret = { TokenType::KEYWORD_PRINT, n };
     } else {
-        ret = {TokenType::IDENTIFIER, n};
+        ret = { TokenType::IDENTIFIER, n };
     }
 
     return ret;
@@ -61,53 +61,53 @@ std::vector<Token> Lexer::tokenize() {
         }
 
         switch (c) {
-            case '+':
-                ret.push_back(Token{TokenType::PLUS, "+"});
+        case '+':
+            ret.push_back(Token { TokenType::PLUS, "+" });
+            advance();
+            break;
+        case '-':
+            ret.push_back(Token { TokenType::MINUS, "-" });
+            advance();
+            break;
+        case '*':
+            ret.push_back(Token { TokenType::MULT, "*" });
+            advance();
+            break;
+        case '/':
+            ret.push_back(Token { TokenType::DIV, "/" });
+            advance();
+            break;
+        case '=':
+            ret.push_back(Token { TokenType::EQUAL, "=" });
+            advance();
+            break;
+        case '(':
+            ret.push_back(Token { TokenType::LPAREN, "(" });
+            advance();
+            break;
+        case ')':
+            ret.push_back(Token { TokenType::RPAREN, ")" });
+            advance();
+            break;
+        case '\n':
+            ret.push_back(Token { TokenType::NEWLINE, "\n" });
+            advance();
+            atLineStart = true;
+            break;
+        case ' ':
+            advance();
+            break;
+        default:
+            if (isalpha(c)) {
+                ret.push_back(lexIdentifierOrKeyword());
+            } else if (isdigit(c)) {
+                ret.push_back(lexNumber());
+            } else {
                 advance();
-                break;
-            case '-':
-                ret.push_back(Token{TokenType::MINUS, "-"});
-                advance();
-                break;
-            case '*':
-                ret.push_back(Token{TokenType::MULT, "*"});
-                advance();
-                break;
-            case '/':
-                ret.push_back(Token{TokenType::DIV, "/"});
-                advance();
-                break;
-            case '=':
-                ret.push_back(Token{TokenType::EQUAL, "="});
-                advance();
-                break;
-            case '(':
-                ret.push_back(Token{TokenType::LPAREN, "("});
-                advance();
-                break;
-            case ')':
-                ret.push_back(Token{TokenType::RPAREN, ")"});
-                advance();
-                break;
-            case '\n':
-                ret.push_back(Token{TokenType::NEWLINE, "\n"});
-                advance();
-                atLineStart = true;
-                break;
-            case ' ':
-                advance();
-                break;
-            default:
-                if (isalpha(c)) {
-                    ret.push_back(lexIdentifierOrKeyword());
-                } else if (isdigit(c)) {
-                    ret.push_back(lexNumber());
-                } else {
-                    advance();
-                }
+            }
         }
     }
 
-    ret.push_back(Token{TokenType::END_OF_FILE, "\0"});
+    ret.push_back(Token { TokenType::END_OF_FILE, "\0" });
     return ret;
 }
