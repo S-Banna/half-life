@@ -21,5 +21,5 @@ int main(int argc, char** argv) {
     for (const Token& t : tokens) {
         cout << magic_enum::enum_name(t.type) << "->";
     }
-    cout << "\b\b; \n"; // remove the last
+    cout << "\b\b; \n"; // remove the last ->
 }

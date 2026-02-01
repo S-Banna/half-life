@@ -97,6 +97,10 @@ std::vector<Token> Lexer::tokenize() {
             case ' ':
                 advance();
                 break;
+            case '"':
+                ret.push_back(Token { TokenType::QUOTE, "\""});
+                advance();
+                break;
             default:
                 if (isalpha(c)) {
                     ret.push_back(lexIdentifierOrKeyword());

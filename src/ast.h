@@ -44,3 +44,8 @@ struct AssumeStmt : public Stmt {
 struct PrintStmt : public Stmt {
     std::unique_ptr<Expr> value;
 };
+
+struct PrintStringStmt : public Stmt {
+    std::string value;
+    PrintStringStmt(const std::string& str) : value(str) {}
+};

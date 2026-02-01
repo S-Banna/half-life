@@ -13,6 +13,7 @@ enum class TokenType {
     EQUAL,
     LPAREN,
     RPAREN,
+    QUOTE,
     NEWLINE,
     END_OF_FILE
 };

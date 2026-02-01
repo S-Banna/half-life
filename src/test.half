@@ -2,3 +2,4 @@
 
 assume x = 2 + 3
 print(x)
+print("x and some other characters in a string literal")
