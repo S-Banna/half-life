@@ -12,9 +12,12 @@ public:
 private:
     std::unique_ptr<Stmt> parseStatement();
     std::unique_ptr<Expr> parseExpression();
+    std::unique_ptr<Stmt> parseAssume();
+    std::unique_ptr<Stmt> parsePrint();
     bool end();
     bool match(TokenType type);
     Token peek();
     Token advance();
     Token previous();
+    Token consume(TokenType type);
 };
