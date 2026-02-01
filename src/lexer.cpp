@@ -61,50 +61,50 @@ std::vector<Token> Lexer::tokenize() {
         }
 
         switch (c) {
-        case '+':
-            ret.push_back(Token { TokenType::PLUS, "+" });
-            advance();
-            break;
-        case '-':
-            ret.push_back(Token { TokenType::MINUS, "-" });
-            advance();
-            break;
-        case '*':
-            ret.push_back(Token { TokenType::MULT, "*" });
-            advance();
-            break;
-        case '/':
-            ret.push_back(Token { TokenType::DIV, "/" });
-            advance();
-            break;
-        case '=':
-            ret.push_back(Token { TokenType::EQUAL, "=" });
-            advance();
-            break;
-        case '(':
-            ret.push_back(Token { TokenType::LPAREN, "(" });
-            advance();
-            break;
-        case ')':
-            ret.push_back(Token { TokenType::RPAREN, ")" });
-            advance();
-            break;
-        case '\n':
-            ret.push_back(Token { TokenType::NEWLINE, "\n" });
-            advance();
-            atLineStart = true;
-            break;
-        case ' ':
-            advance();
-            break;
-        default:
-            if (isalpha(c)) {
-                ret.push_back(lexIdentifierOrKeyword());
-            } else if (isdigit(c)) {
-                ret.push_back(lexNumber());
-            } else {
+            case '+':
+                ret.push_back(Token { TokenType::PLUS, "+" });
                 advance();
-            }
+                break;
+            case '-':
+                ret.push_back(Token { TokenType::MINUS, "-" });
+                advance();
+                break;
+            case '*':
+                ret.push_back(Token { TokenType::MULT, "*" });
+                advance();
+                break;
+            case '/':
+                ret.push_back(Token { TokenType::DIV, "/" });
+                advance();
+                break;
+            case '=':
+                ret.push_back(Token { TokenType::EQUAL, "=" });
+                advance();
+                break;
+            case '(':
+                ret.push_back(Token { TokenType::LPAREN, "(" });
+                advance();
+                break;
+            case ')':
+                ret.push_back(Token { TokenType::RPAREN, ")" });
+                advance();
+                break;
+            case '\n':
+                ret.push_back(Token { TokenType::NEWLINE, "\n" });
+                advance();
+                atLineStart = true;
+                break;
+            case ' ':
+                advance();
+                break;
+            default:
+                if (isalpha(c)) {
+                    ret.push_back(lexIdentifierOrKeyword());
+                } else if (isdigit(c)) {
+                    ret.push_back(lexNumber());
+                } else {
+                    advance();
+                }
         }
     }
 
