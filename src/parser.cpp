@@ -46,7 +46,7 @@ std::vector<std::unique_ptr<Stmt>> Parser::parseProgram() {
     while (!end()) {
         std::unique_ptr<Stmt> curr = parseStatement();
         if (curr)
-            ret.push_back(curr);
+            ret.push_back(std::move(curr));
         while (!end() && peek().type == TokenType::NEWLINE)
             advance();
     }
@@ -104,7 +104,7 @@ std::unique_ptr<Expr> Parser::parseTerm() {
     while (!end() && (peek().type == TokenType::PLUS || peek().type == TokenType::MINUS)) {
         Token op = advance();
         std::unique_ptr<Expr> right = parseFactor();
-        left = std::make_unique<BinaryExpr>(op, std::move(left), std::move(right));
+        left = std::make_unique<BinaryExpr>(op.type, std::move(left), std::move(right));
     }
 
     return left;
@@ -116,7 +116,7 @@ std::unique_ptr<Expr> Parser::parseFactor() {
     while (!end() && (peek().type == TokenType::MULT || peek().type == TokenType::DIV)) {
         Token op = advance();
         std::unique_ptr<Expr> right = parsePrimary();
-        left = std::make_unique<BinaryExpr>(op, std::move(left), std::move(right));
+        left = std::make_unique<BinaryExpr>(op.type, std::move(left), std::move(right));
     }
 
     return left;
