@@ -1,6 +1,10 @@
 #include <memory>
 #include <string>
+
+#ifndef LEXER_H
+#define LEXER_H
 #include "lexer.h"
+#endif
 
 struct ASTNode {
     virtual ~ASTNode() = default;
@@ -47,5 +51,5 @@ struct PrintStmt : public Stmt {
 
 struct PrintStringStmt : public Stmt {
     std::string value;
-    PrintStringStmt(const std::string& str) : value(str) {}
+    PrintStringStmt(const std::string& str) : value(str) { }
 };

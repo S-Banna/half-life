@@ -2,6 +2,11 @@
 #include <iostream>
 #include <stdexcept>
 
+#ifndef MAGIC_H
+#define MAGIC_H
+#include ".\external\magic_enum.hpp"
+#endif
+
 Parser::Parser(const std::vector<Token>& tokens) : tokens(tokens), pos(0) { };
 
 const Token& Parser::peek() {
@@ -75,6 +80,8 @@ std::unique_ptr<Stmt> Parser::parseAssume() {
 }
 
 std::unique_ptr<Stmt> Parser::parsePrint() {
+    consume(TokenType::LPAREN);
+
     if (peek().type == TokenType::QUOTE) {
         std::string s = "";
         consume(TokenType::QUOTE);
@@ -86,8 +93,6 @@ std::unique_ptr<Stmt> Parser::parsePrint() {
     }
 
     std::unique_ptr<PrintStmt> ret = std::make_unique<PrintStmt>();
-
-    consume(TokenType::LPAREN);
     ret->value = parseExpression();
     consume(TokenType::RPAREN);
 
@@ -138,7 +143,8 @@ std::unique_ptr<Expr> Parser::parsePrimary() {
             return parseExpression();
             consume(TokenType::RPAREN);
         default:
-            std::cerr << "unexpected token in parsePrimary";
+            std::cerr << "unexpected token in parsePrimary ";
+            std::cerr << magic_enum::enum_name(peek().type);
             std::exit(1);
     }
 }

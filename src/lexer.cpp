@@ -51,14 +51,6 @@ std::vector<Token> Lexer::tokenize() {
 
     while (!end()) {
         char c = peek();
-        bool atLineStart = true;
-
-        if (atLineStart && c == '?') {
-            while (!end() && peek() != '\n') {
-                advance();
-            }
-            continue;
-        }
 
         switch (c) {
             case '+':
@@ -92,7 +84,6 @@ std::vector<Token> Lexer::tokenize() {
             case '\n':
                 ret.push_back(Token { TokenType::NEWLINE, "\n" });
                 advance();
-                atLineStart = true;
                 break;
             case ' ':
                 advance();
@@ -100,6 +91,10 @@ std::vector<Token> Lexer::tokenize() {
             case '"':
                 ret.push_back(Token { TokenType::QUOTE, "\""});
                 advance();
+                break;
+            case '?':
+                while (!end() && peek() != '\n')
+                    advance();
                 break;
             default:
                 if (isalpha(c)) {
