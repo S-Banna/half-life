@@ -3,6 +3,7 @@
 void Interpreter::execute(const std::vector<std::unique_ptr<Stmt>>& program) {
     for (const auto& stmt : program) {
         state(stmt.get());
+        decay();
     }
 }
 
@@ -49,4 +50,17 @@ double Interpreter::evaluate(const Expr* expr) {
 
     std::cerr << "Unknown expression type\n";
     std::exit(1);
+}
+
+void Interpreter::decay() {
+    for (auto& [id, num] : env) {
+        if (odds(rng)) {
+            if (debug)
+                std::cout << "{debug: " << id
+                          << " decays from " << num
+                          << " to " << num / 2.0
+                          << "}\n";
+            num /= 2.0;
+        }
+    }
 }

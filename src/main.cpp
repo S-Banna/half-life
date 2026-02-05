@@ -33,7 +33,16 @@ int main(int argc, char** argv) {
     Parser parser(tokens);
     std::vector<std::unique_ptr<Stmt>> program = parser.parseProgram();
 
-    Interpreter interpreter;
+    bool debug = false;
+    if (argc >= 3) {
+        std::string flag = argv[2];
+        if (flag == "true" || flag == "1") {
+            debug = true;
+            std::cout << "{debug mode enabled}" << "\n";
+        }
+    }
+
+    Interpreter interpreter(debug);
     interpreter.execute(program);
 
     return 0;
