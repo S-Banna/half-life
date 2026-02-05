@@ -30,11 +30,6 @@ int main(int argc, char** argv) {
     Lexer* lex = new Lexer(contents);
     vector<Token> tokens = lex->tokenize();
 
-    for (const Token& t : tokens) {
-        cout << magic_enum::enum_name(t.type) << "->";
-    }
-    cout << "\b\b; \n"; // remove the last ->
-
     Parser parser(tokens);
     std::vector<std::unique_ptr<Stmt>> program = parser.parseProgram();
 

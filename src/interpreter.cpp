@@ -15,10 +15,10 @@ void Interpreter::state(const Stmt* stmt) {
         std::cout << value << "\n";
     } else if (auto str = dynamic_cast<const PrintStringStmt*>(stmt)) {
         std::cout << str->value << "\n";
+    } else {
+        std::cerr << "Unknown statement type\n";
+        std::exit(1);
     }
-
-    std::cerr << "Unknown statement type\n";
-    std::exit(1);
 }
 
 double Interpreter::evaluate(const Expr* expr) {
