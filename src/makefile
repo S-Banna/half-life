@@ -1,2 +1,2 @@
 make:
-	g++ -std=c++17 -o half-life .\interpreter.cpp .\lexer.cpp .\parser.cpp
+	g++ -std=c++17 -o half-life .\main.cpp .\lexer.cpp .\parser.cpp

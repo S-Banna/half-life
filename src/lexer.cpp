@@ -89,7 +89,7 @@ std::vector<Token> Lexer::tokenize() {
                 advance();
                 break;
             case '"':
-                ret.push_back(Token { TokenType::QUOTE, "\""});
+                ret.push_back(Token { TokenType::QUOTE, "\"" });
                 advance();
                 break;
             case '?':
