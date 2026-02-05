@@ -86,8 +86,9 @@ std::unique_ptr<Stmt> Parser::parsePrint() {
         std::string s = "";
         consume(TokenType::QUOTE);
         while (peek().type != TokenType::QUOTE) {
-            s += advance().lexeme;
+            s += advance().lexeme + " ";
         }
+        s.pop_back();
         consume(TokenType::QUOTE);
         return std::make_unique<PrintStringStmt>(s);
     }

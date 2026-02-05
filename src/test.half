@@ -1,5 +1,6 @@
 ? lines starting with a ? are considered comments
 
 assume x = 2 + 3
+assume y = 5 * 6 / 3 + 2
 print(x)
 print("x and some other characters in a string literal")
