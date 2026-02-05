@@ -2,5 +2,10 @@
 
 assume x = 2 + 3
 assume y = 5 * 6 / 3 + 2
+
+? another comment to test
+
 print(x)
+print(y)
+
 print("x and some other characters in a string literal")
