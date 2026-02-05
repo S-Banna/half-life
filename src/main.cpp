@@ -14,6 +14,7 @@
 #define PARSER_H
 #include "parser.h"
 #endif
+#include "interpreter.h"
 #include "mainPrinter.cpp"
 
 using namespace std;
@@ -37,7 +38,8 @@ int main(int argc, char** argv) {
     Parser parser(tokens);
     std::vector<std::unique_ptr<Stmt>> program = parser.parseProgram();
 
-    for (const auto& i : program) {
-        printStmt(i.get(), 0);
-    }
+    Interpreter interpreter;
+    interpreter.execute(program);
+
+    return 0;
 }
