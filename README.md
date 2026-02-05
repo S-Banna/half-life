@@ -23,6 +23,6 @@ The `print` keyword outputs a value. You can print expressions or string literal
 ### Comments
 Lines starting with `?` are considered comments and ignored by the interpreter:
 
-`? this is a comment  `
+`? this is a comment` <br>
 `assume z = 10`
 
