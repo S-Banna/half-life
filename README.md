@@ -9,14 +9,14 @@ In Half-Life, your variables and statements can "reach their half-life", causing
 The `assume` keyword is used to assign a value to a variable. Values can be numbers, variables, or expressions:
 
 
-`assume x = 2 + 3 `
+`assume x = 2 + 3 ` <br>
 `assume y = x * 5 + 7`
 
 
 ### Print
 The `print` keyword outputs a value. You can print expressions or string literals:
 
-`print(x)  `
+`print(x)  ` <br>
 `print("This is a string")`
 
 
