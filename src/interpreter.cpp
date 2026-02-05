@@ -15,7 +15,7 @@ void Interpreter::state(const Stmt* stmt) {
         double value = evaluate(print->value.get());
         std::cout << value << "\n";
     } else if (auto str = dynamic_cast<const PrintStringStmt*>(stmt)) {
-        std::cout << str->value << "\n";
+        decayPrint(str->value);
     } else {
         std::cerr << "Unknown statement type\n";
         std::exit(1);
@@ -63,4 +63,19 @@ void Interpreter::decay() {
             num /= 2.0;
         }
     }
+}
+
+void Interpreter::decayPrint(std::string str) {
+    std::uniform_real_distribution<double> chance(0.0, 1.0);
+    std::discrete_distribution<int> pick({5, 1, 3});
+
+    for (char c : str) {
+        if (c != ' ' && chance(rng) < 0.18) {
+            std::cout << corruption[pick(rng)];
+        } else {
+            std::cout << c;
+        }
+    }
+
+    std::cout << '\n';
 }

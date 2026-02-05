@@ -18,6 +18,7 @@ class Interpreter {
     std::mt19937 rng;
     std::bernoulli_distribution odds{0.5};
     bool debug = false;
+    std::string corruption[3] = { "▓", "░", "⧎" };
 
 public:
     void execute(const std::vector<std::unique_ptr<Stmt>>& program);
@@ -27,4 +28,5 @@ private:
     void state(const Stmt* stmt);
     double evaluate(const Expr* expr);
     void decay();
+    void decayPrint(std::string str);
 };

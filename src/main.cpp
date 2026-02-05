@@ -17,9 +17,16 @@
 #include "interpreter.h"
 #include "mainPrinter.cpp"
 
+#define WIN32_LEAN_AND_MEAN   // needs to be here to compile
+#include <windows.h>
+
 using namespace std;
 
 int main(int argc, char** argv) {
+    #ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+    #endif
+
     ifstream source(argv[1]);
     if (!source.is_open()) {
         cerr << "error opening file!" << std::endl;
